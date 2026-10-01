@@ -1,0 +1,33 @@
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# PHP / Backend
+backend/vendor/
+backend/.env
+backend/.env.backup
+backend/.env.production
+backend/storage/logs/
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/bootstrap/cache/*
+backend/public/storage
+backend/public/hot
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

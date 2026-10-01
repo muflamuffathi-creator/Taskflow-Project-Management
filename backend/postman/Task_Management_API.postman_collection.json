@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "e278d2fa-c15c-46e5-bc36-73eb6a08a309",
+		"name": "Task & Project Management Tool REST API",
+		"description": "Complete Postman API Collection for testing Laravel Sanctum Authentication, Projects, Kanban Tasks, Dashboards, and Team Management.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@taskmanager.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "login"]
+						}
+					}
+				},
+				{
+					"name": "Login (Team Member)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@taskmanager.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "login"]
+						}
+					}
+				},
+				{
+					"name": "Register New User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Developer\",\n  \"email\": \"dev@taskmanager.com\",\n  \"password\": \"password123\",\n  \"role\": \"member\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/register",
+							"host": ["{{base_url}}"],
+							"path": ["api", "register"]
+						}
+					}
+				},
+				{
+					"name": "Get Current User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/me",
+							"host": ["{{base_url}}"],
+							"path": ["api", "me"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get All Projects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects",
+							"host": ["{{base_url}}"],
+							"path": ["api", "projects"]
+						}
+					}
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"AI Chatbot Integration\",\n  \"description\": \"Building custom AI customer support chatbot widget.\",\n  \"status\": \"active\",\n  \"due_date\": \"2026-11-15\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/projects",
+							"host": ["{{base_url}}"],
+							"path": ["api", "projects"]
+						}
+					}
+				},
+				{
+					"name": "Get Project By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "projects", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Tasks (Kanban)",
+			"item": [
+				{
+					"name": "Get Tasks for Project",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tasks?project_id=1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks"],
+							"query": [
+								{
+									"key": "project_id",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"project_id\": 1,\n  \"title\": \"Implement OAuth Google Login\",\n  \"description\": \"Allow one-click sign in with Google accounts.\",\n  \"status\": \"to-do\",\n  \"priority\": \"high\",\n  \"assigned_to\": 2,\n  \"due_date\": \"2026-10-25\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tasks",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks"]
+						}
+					}
+				},
+				{
+					"name": "Update Task Status (Drag & Drop)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"in_progress\",\n  \"position\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tasks/1/status",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tasks", "1", "status"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Dashboards",
+			"item": [
+				{
+					"name": "Admin Dashboard Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/admin",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dashboard", "admin"]
+						}
+					}
+				},
+				{
+					"name": "Member Dashboard Stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{auth_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/member",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dashboard", "member"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000"
+		},
+		{
+			"key": "auth_token",
+			"value": "YOUR_SANCTUM_BEARER_TOKEN_HERE"
+		}
+	]
+}
